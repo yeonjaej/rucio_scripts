@@ -1,8 +1,10 @@
 #!/bin/bash
 
 input=$1
+output=$2
 
 echo $input
+echo $output
 while IFS= read -r line <&3;
 
 do
@@ -39,6 +41,6 @@ do
 done < <(printf '%s\n' "$meta")
 
 
-echo "$filename $checksum $size" >> icarus_keepup_v09_72_00_05p04_bnbmajority.txt #icarus_run9435.txt
+echo "$filename $checksum $size" >> "$output" #icarus_keepup_v09_72_00_05p04_bnbmajority_2.txt #icarus_run9435.txt
 
-done 3< bnb_filelist.txt #ALLoffbeambnbmajority.txt #filelist.txt
+done 3< "$input" #bnb_filelist.txt #ALLoffbeambnbmajority.txt #filelist.txt
