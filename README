@@ -1,0 +1,4 @@
+filelist.txt is generated bia 
+samweb list-definition-feils $sam_definition > filelist.txt
+(e.g.)
+samweb list-definition-files TPCSignalTaskforce_DecemberWorkshopSample_production_v09_72_00_06_bnbmajority_larcv > filelist.txt
