@@ -1,4 +1,11 @@
+scripts useful for rucio transfer from FNAL to SLAC
+
 filelist.txt is generated bia 
-samweb list-definition-feils $sam_definition > filelist.txt
+`samweb list-definition-feils $sam_definition > filelist.txt`
 (e.g.)
-samweb list-definition-files TPCSignalTaskforce_DecemberWorkshopSample_production_v09_72_00_06_bnbmajority_larcv > filelist.txt
+`samweb list-definition-files TPCSignalTaskforce_DecemberWorkshopSample_production_v09_72_00_06_bnbmajority_larcv > filelist.txt`
+
+Then you can run `process_metadata.sh filelist.txt output_list.txt`
+This step gets the metadata of files then create an output file in `filename checksum size` format 
+
+output_list.txt becomes the `filelist` arguement in the ingestion script, https://github.com/bjwhite-fnal/spellbook/blob/main/rucio/rbipi.py 
