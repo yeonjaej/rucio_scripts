@@ -5,16 +5,16 @@ filelist.txt is generated via
 (e.g.)
 `samweb list-definition-files TPCSignalTaskforce_DecemberWorkshopSample_production_v09_72_00_06_bnbmajority_larcv > filelist.txt`
 
-Then you can run `bash process_metadata.sh filelist.txt output_list.txt`
+Then you can run `bash process_metadata.sh filelist.txt filelist_meta.txt`
 This step gets the metadata of files then create an output file in `filename checksum size` format 
 
-output_list.txt becomes the `filelist` arguement in the ingestion script, https://github.com/bjwhite-fnal/spellbook/blob/main/rucio/rbipi.py 
+filelist_meta.txt becomes the `filelist` arguement in the ingestion script, https://github.com/bjwhite-fnal/spellbook/blob/main/rucio/rbipi.py 
 
-rbipi.py doesn't handle if `filelist` is too long. It's recommended to break down `filelist` into smaller text files (~1000 lines).
-(e.g. `split -dl 1000 --additional-suffix=.txt filelist filelist_)
+rbipi.py doesn't handle if `filelist` is too long. It's recommended to break down the input file into smaller text files (~1000 lines).
+(e.g. `split -dl 1000 --additional-suffix=.txt filelist_meta.txt filelist_meta_)
 
 then 
-`python3 rbipi.py `YOUR_DATASET_NAME` filelist_00.txt --rucio-account=icaruspro` will create a dataset and add the file to the dataset and ingest.
+`python3 rbipi.py `YOUR_DATASET_NAME` filelist_meta_00.txt --rucio-account=icaruspro` will create a dataset and add the file to the dataset and ingest.
 
 After ingestion, files should be transferred to SLAC_SDF via running some script like,
 
