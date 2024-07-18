@@ -9,3 +9,20 @@ Then you can run `bash process_metadata.sh filelist.txt output_list.txt`
 This step gets the metadata of files then create an output file in `filename checksum size` format 
 
 output_list.txt becomes the `filelist` arguement in the ingestion script, https://github.com/bjwhite-fnal/spellbook/blob/main/rucio/rbipi.py 
+
+rbipi.py doesn't handle if `filelist` is too long. It's recommended to break down `filelist` into smaller text files (~1000 lines).
+(e.g. `split -dl 1000 --additional-suffix=.txt filelist filelist_)
+
+then 
+`python3 rbipi.py `YOUR_DATASET_NAME` filelist_00.txt --rucio-account=icaruspro` will create a dataset and add the file to the dataset and ingest.
+
+After ingestion, files should be transferred to SLAC_SDF via running some script like,
+
+#!/bin/bash                                                                                                                                                    
+
+while read -r line
+do
+    rucio upload $line --rse SLAC_SDF --register-after-upload
+done < full_path.txt
+
+where `full_path.txt` is full file path in \pnfs (if you are working in FNAL servers).
