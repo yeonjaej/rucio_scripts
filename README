@@ -14,7 +14,7 @@ rbipi.py doesn't handle if `filelist` is too long. It's recommended to break dow
 (e.g. `split -dl 1000 --additional-suffix=.txt filelist_meta.txt filelist_meta_)
 
 then 
-`python3 rbipi.py `YOUR_DATASET_NAME` filelist_meta_00.txt --rucio-account=icaruspro` will create a dataset and add the file to the dataset and ingest.
+`python3 rbipi.py `YOUR_DATASET_NAME` SLAC_SDF filelist_meta_00.txt --rucio-account=icaruspro` will create a dataset and add the file to the dataset and ingest.
 
 After ingestion, files should be transferred to SLAC_SDF via running some script like,
 
